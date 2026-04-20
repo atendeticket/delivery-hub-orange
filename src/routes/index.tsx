@@ -2,7 +2,6 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import {
-  ChefHat,
   ShoppingBag,
   LayoutDashboard,
   Bike,
@@ -18,6 +17,8 @@ import {
 import dashboardHero from "@/assets/dashboard-hero.jpg";
 import phoneMenu from "@/assets/phone-menu.jpg";
 import deliveryRider from "@/assets/delivery-rider.jpg";
+import { SiteHeader } from "@/components/SiteHeader";
+import { SiteFooter } from "@/components/SiteFooter";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -53,7 +54,7 @@ export const Route = createFileRoute("/")({
 function Index() {
   return (
     <div className="min-h-screen bg-background font-[Inter,system-ui,sans-serif] text-foreground antialiased">
-      <Header />
+      <SiteHeader />
       <main>
         <Hero />
         <Stats />
@@ -64,56 +65,8 @@ function Index() {
         <Pricing />
         <CTA />
       </main>
-      <Footer />
+      <SiteFooter />
     </div>
-  );
-}
-
-function Logo() {
-  return (
-    <div className="flex items-center gap-2">
-      <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[image:var(--gradient-primary)] shadow-[var(--shadow-soft)]">
-        <ChefHat className="h-5 w-5 text-primary-foreground" strokeWidth={2.5} />
-      </div>
-      <span className="font-[Plus_Jakarta_Sans,sans-serif] text-xl font-bold tracking-tight">
-        Chef<span className="text-primary">Bora</span>
-      </span>
-    </div>
-  );
-}
-
-function Header() {
-  return (
-    <header className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-xl">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
-        <Logo />
-        <nav className="hidden items-center gap-8 text-sm font-medium text-muted-foreground md:flex">
-          <a href="#modulos" className="transition-colors hover:text-foreground">
-            Módulos
-          </a>
-          <a href="#funcionalidades" className="transition-colors hover:text-foreground">
-            Funcionalidades
-          </a>
-          <a href="#como-funciona" className="transition-colors hover:text-foreground">
-            Como funciona
-          </a>
-          <a href="#planos" className="transition-colors hover:text-foreground">
-            Planos
-          </a>
-        </nav>
-        <div className="flex items-center gap-3">
-          <Button variant="ghost" size="sm" className="hidden sm:inline-flex">
-            Entrar
-          </Button>
-          <Button
-            size="sm"
-            className="bg-[image:var(--gradient-primary)] text-primary-foreground shadow-[var(--shadow-soft)] hover:opacity-95"
-          >
-            Teste grátis
-          </Button>
-        </div>
-      </div>
-    </header>
   );
 }
 
@@ -594,53 +547,3 @@ function CTA() {
   );
 }
 
-function Footer() {
-  return (
-    <footer className="border-t border-border bg-secondary/30">
-      <div className="mx-auto max-w-7xl px-6 py-12">
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          <div>
-            <Logo />
-            <p className="mt-4 max-w-xs text-sm text-muted-foreground">
-              Sistema completo de delivery para restaurantes que querem crescer sem
-              depender de terceiros.
-            </p>
-          </div>
-          <FooterCol
-            title="Produto"
-            links={["Cardápio digital", "Painel do lojista", "App do entregador", "Integrações"]}
-          />
-          <FooterCol
-            title="Empresa"
-            links={["Sobre", "Blog", "Carreiras", "Contato"]}
-          />
-          <FooterCol
-            title="Suporte"
-            links={["Central de ajuda", "Status", "Termos", "Privacidade"]}
-          />
-        </div>
-        <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-border pt-6 text-sm text-muted-foreground sm:flex-row">
-          <p>© {new Date().getFullYear()} ChefBora. Todos os direitos reservados.</p>
-          <p>Feito com 🧡 para o delivery brasileiro.</p>
-        </div>
-      </div>
-    </footer>
-  );
-}
-
-function FooterCol({ title, links }: { title: string; links: string[] }) {
-  return (
-    <div>
-      <h4 className="font-[Plus_Jakarta_Sans,sans-serif] text-sm font-bold">{title}</h4>
-      <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-        {links.map((l) => (
-          <li key={l}>
-            <a href="#" className="transition-colors hover:text-foreground">
-              {l}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
