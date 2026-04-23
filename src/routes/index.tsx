@@ -1,50 +1,47 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import {
-  ShoppingBag,
-  LayoutDashboard,
-  Bike,
-  CheckCircle2,
   ArrowRight,
+  CheckCircle2,
   Smartphone,
-  BarChart3,
-  Clock,
+  LayoutDashboard,
+  MessageCircle,
+  Bell,
+  Users,
+  TrendingUp,
   Shield,
+  Heart,
+  XCircle,
+  Sparkles,
   Star,
-  Zap,
 } from "lucide-react";
 import dashboardHero from "@/assets/dashboard-hero.jpg";
 import phoneMenu from "@/assets/phone-menu.jpg";
-import deliveryRider from "@/assets/delivery-rider.jpg";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "ChefBora — Sistema completo de delivery para restaurantes" },
+      { title: "ChefBora — Seu próprio app de delivery, sem taxas abusivas" },
       {
         name: "description",
         content:
-          "ChefBora é o sistema completo de delivery para restaurantes e lojas: cardápio digital, painel do lojista e app do entregador em uma única plataforma.",
+          "Crie o app de delivery do seu restaurante em minutos. Sem comissão por venda, com painel completo, integração WhatsApp e relacionamento direto com seus clientes.",
       },
-      { property: "og:title", content: "ChefBora — Sistema completo de delivery" },
+      { property: "og:title", content: "ChefBora — Seu próprio app de delivery" },
       {
         property: "og:description",
         content:
-          "Cardápio digital, gestão de pedidos e app do entregador. Tudo o que seu restaurante precisa para vender mais no delivery.",
+          "Pare de pagar 30% para apps de terceiros. Tenha seu app, painel e WhatsApp integrados em uma plataforma só.",
       },
       { property: "og:type", content: "website" },
     ],
     links: [
-      {
-        rel: "preconnect",
-        href: "https://fonts.googleapis.com",
-      },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800;900&display=swap",
       },
     ],
   }),
@@ -57,19 +54,19 @@ function Index() {
       <SiteHeader />
       <main>
         <Hero />
-        <Stats />
-        <Modules />
+        <Problem />
+        <Solution />
+        <Benefits />
         <Features />
-        <HowItWorks />
-        <Testimonials />
-        <Pricing />
-        <CTA />
+        <Trust />
+        <FinalCTA />
       </main>
       <SiteFooter />
     </div>
   );
 }
 
+/* ---------- HERO ---------- */
 function Hero() {
   return (
     <section className="relative overflow-hidden">
@@ -77,35 +74,35 @@ function Hero() {
         className="absolute inset-0 -z-10"
         style={{ background: "var(--gradient-hero)" }}
       />
-      <div className="mx-auto grid max-w-7xl gap-12 px-6 pb-20 pt-16 lg:grid-cols-2 lg:items-center lg:pb-28 lg:pt-24">
+      <div className="mx-auto grid max-w-7xl gap-16 px-6 pb-24 pt-20 lg:grid-cols-[1.1fr_1fr] lg:items-center lg:pb-32 lg:pt-28">
         <div className="space-y-8">
           <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-xs font-semibold text-primary">
-            <Zap className="h-3.5 w-3.5" />
-            Sistema completo de delivery
+            <Sparkles className="h-3.5 w-3.5" />
+            Seu delivery, suas regras
           </div>
-          <h1 className="font-[Plus_Jakarta_Sans,sans-serif] text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
-            Tudo o que seu restaurante precisa para{" "}
+          <h1 className="font-[Plus_Jakarta_Sans,sans-serif] text-5xl font-extrabold leading-[1.02] tracking-tight sm:text-6xl lg:text-7xl">
+            Seu próprio app de delivery,{" "}
             <span className="bg-[image:var(--gradient-primary)] bg-clip-text text-transparent">
-              vender mais no delivery
+              sem pagar comissão
             </span>
           </h1>
-          <p className="max-w-xl text-lg leading-relaxed text-muted-foreground">
-            Cardápio digital, painel de gestão e app do entregador em uma única
-            plataforma. Controle pedidos, equipe e entregas sem complicação — e sem
-            pagar comissão por venda.
+          <p className="max-w-xl text-lg leading-relaxed text-muted-foreground sm:text-xl">
+            Pare de entregar 30% do seu lucro para marketplaces. Com o ChefBora,
+            seu restaurante tem app próprio, painel completo e WhatsApp integrado
+            — em poucos minutos.
           </p>
           <div className="flex flex-col gap-3 sm:flex-row">
             <Button
               size="lg"
-              className="h-12 bg-[image:var(--gradient-primary)] px-7 text-base font-semibold text-primary-foreground shadow-[var(--shadow-elegant)] transition-transform hover:scale-[1.02] hover:opacity-95"
+              className="h-14 bg-[image:var(--gradient-primary)] px-8 text-base font-bold text-primary-foreground shadow-[var(--shadow-elegant)] transition-transform hover:scale-[1.02] hover:opacity-95"
             >
-              Começar teste grátis
-              <ArrowRight className="ml-1 h-4 w-4" />
+              Criar meu app agora
+              <ArrowRight className="ml-1 h-5 w-5" />
             </Button>
             <Button
               size="lg"
               variant="outline"
-              className="h-12 border-border px-7 text-base font-semibold"
+              className="h-14 border-border px-8 text-base font-semibold"
             >
               Ver demonstração
             </Button>
@@ -121,29 +118,29 @@ function Hero() {
             </span>
             <span className="inline-flex items-center gap-2">
               <CheckCircle2 className="h-4 w-4 text-primary" />
-              Suporte em português
+              Configure em 5 minutos
             </span>
           </div>
         </div>
 
         <div className="relative">
           <div
-            className="absolute -inset-6 -z-10 rounded-[2rem] opacity-60 blur-3xl"
+            className="absolute -inset-8 -z-10 rounded-[2rem] opacity-50 blur-3xl"
             style={{ background: "var(--gradient-primary)" }}
           />
-          <div className="relative overflow-hidden rounded-2xl border border-border bg-card shadow-[var(--shadow-elegant)]">
+          <div className="relative overflow-hidden rounded-3xl border border-border bg-card shadow-[var(--shadow-elegant)]">
             <img
               src={dashboardHero}
-              alt="Painel de gestão do ChefBora"
+              alt="Painel de gestão de pedidos do ChefBora"
               width={1280}
               height={960}
               className="h-auto w-full"
             />
           </div>
-          <div className="absolute -bottom-6 -left-6 hidden w-48 rotate-[-4deg] overflow-hidden rounded-2xl border border-border bg-card shadow-[var(--shadow-elegant)] sm:block">
+          <div className="absolute -bottom-8 -left-8 hidden w-52 rotate-[-6deg] overflow-hidden rounded-2xl border border-border bg-card shadow-[var(--shadow-elegant)] sm:block">
             <img
               src={phoneMenu}
-              alt="Cardápio digital no celular"
+              alt="App de cardápio do ChefBora no celular"
               width={800}
               height={1024}
               loading="lazy"
@@ -156,111 +153,54 @@ function Hero() {
   );
 }
 
-function Stats() {
-  const stats = [
-    { value: "+30%", label: "em pedidos no primeiro mês" },
-    { value: "0%", label: "de comissão por venda" },
-    { value: "5min", label: "para configurar o cardápio" },
-    { value: "24/7", label: "suporte para o lojista" },
-  ];
-  return (
-    <section className="border-y border-border bg-secondary/40">
-      <div className="mx-auto grid max-w-7xl grid-cols-2 gap-8 px-6 py-12 lg:grid-cols-4">
-        {stats.map((s) => (
-          <div key={s.label} className="text-center">
-            <div className="font-[Plus_Jakarta_Sans,sans-serif] text-3xl font-extrabold text-primary lg:text-4xl">
-              {s.value}
-            </div>
-            <div className="mt-1 text-sm text-muted-foreground">{s.label}</div>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-function Modules() {
-  const modules = [
+/* ---------- PROBLEMA ---------- */
+function Problem() {
+  const pains = [
     {
-      icon: ShoppingBag,
-      title: "Cardápio digital + pedidos online",
-      desc: "Sua loja online personalizada com carrinho, checkout e pagamento integrado. O cliente pede direto pelo seu link, sem intermediários.",
-      bullets: ["Link próprio da loja", "Pagamento PIX e cartão", "Cupons e promoções"],
-      image: phoneMenu,
+      title: "Comissões de até 30% por pedido",
+      desc: "Cada venda no marketplace tira uma fatia gigante do seu lucro.",
     },
     {
-      icon: LayoutDashboard,
-      title: "Painel do lojista",
-      desc: "Gerencie pedidos em tempo real, controle estoque, atualize o cardápio e acompanhe o desempenho da sua operação em um só lugar.",
-      bullets: ["Pedidos em tempo real", "Relatórios e métricas", "Gestão de produtos"],
-      image: dashboardHero,
+      title: "Cliente é deles, não seu",
+      desc: "Você não tem acesso ao contato, histórico nem ao relacionamento.",
     },
     {
-      icon: Bike,
-      title: "App do entregador",
-      desc: "Seus entregadores recebem rotas otimizadas, atualizam o status da entrega e acompanham seus ganhos diretamente pelo celular.",
-      bullets: ["Rotas otimizadas", "Status em tempo real", "Controle de ganhos"],
-      image: deliveryRider,
+      title: "Refém da plataforma",
+      desc: "Mudanças de regras, ranqueamento e taxas decidem o seu faturamento.",
     },
   ];
 
   return (
-    <section id="modulos" className="py-24">
+    <section className="border-y border-border bg-secondary/40 py-24">
       <div className="mx-auto max-w-7xl px-6">
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-sm font-semibold uppercase tracking-wider text-primary">
-            Módulos
+            O problema
           </p>
-          <h2 className="mt-3 font-[Plus_Jakarta_Sans,sans-serif] text-3xl font-bold tracking-tight sm:text-4xl">
-            Três sistemas integrados, um único delivery
+          <h2 className="mt-3 font-[Plus_Jakarta_Sans,sans-serif] text-4xl font-extrabold tracking-tight sm:text-5xl">
+            Você trabalha. Eles lucram.
           </h2>
-          <p className="mt-4 text-muted-foreground">
-            Cada parte da operação tem sua ferramenta — e todas conversam entre si
-            automaticamente.
+          <p className="mt-5 text-lg text-muted-foreground">
+            Restaurantes que dependem só de marketplaces vivem apertados — e
+            crescem na medida em que esses apps deixam.
           </p>
         </div>
 
-        <div className="mt-16 space-y-20">
-          {modules.map((m, i) => (
+        <div className="mt-14 grid gap-6 md:grid-cols-3">
+          {pains.map((p) => (
             <div
-              key={m.title}
-              className={`grid items-center gap-12 lg:grid-cols-2 ${
-                i % 2 === 1 ? "lg:[&>div:first-child]:order-2" : ""
-              }`}
+              key={p.title}
+              className="rounded-2xl border border-border bg-card p-7"
             >
-              <div>
-                <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                  <m.icon className="h-6 w-6" />
-                </div>
-                <h3 className="mt-5 font-[Plus_Jakarta_Sans,sans-serif] text-2xl font-bold tracking-tight sm:text-3xl">
-                  {m.title}
-                </h3>
-                <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-                  {m.desc}
-                </p>
-                <ul className="mt-6 space-y-3">
-                  {m.bullets.map((b) => (
-                    <li key={b} className="flex items-center gap-3 text-sm">
-                      <CheckCircle2 className="h-5 w-5 text-primary" />
-                      <span className="font-medium">{b}</span>
-                    </li>
-                  ))}
-                </ul>
+              <div className="inline-flex h-11 w-11 items-center justify-center rounded-lg bg-destructive/10 text-destructive">
+                <XCircle className="h-5 w-5" />
               </div>
-              <div className="relative">
-                <div
-                  className="absolute -inset-4 -z-10 rounded-3xl opacity-30 blur-2xl"
-                  style={{ background: "var(--gradient-primary)" }}
-                />
-                <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-[var(--shadow-soft)]">
-                  <img
-                    src={m.image}
-                    alt={m.title}
-                    loading="lazy"
-                    className="h-full w-full object-cover"
-                  />
-                </div>
-              </div>
+              <h3 className="mt-5 font-[Plus_Jakarta_Sans,sans-serif] text-lg font-bold">
+                {p.title}
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                {p.desc}
+              </p>
             </div>
           ))}
         </div>
@@ -269,91 +209,195 @@ function Modules() {
   );
 }
 
-function Features() {
-  const features = [
-    { icon: Smartphone, title: "100% responsivo", desc: "Funciona perfeitamente em qualquer dispositivo, do celular ao desktop." },
-    { icon: BarChart3, title: "Relatórios completos", desc: "Acompanhe vendas, ticket médio e horários de pico em tempo real." },
-    { icon: Clock, title: "Pedidos instantâneos", desc: "Notificações automáticas mantêm cozinha e entregadores sincronizados." },
-    { icon: Shield, title: "Dados seguros", desc: "Infraestrutura em nuvem com backup automático e criptografia de ponta." },
-    { icon: Zap, title: "Setup em minutos", desc: "Configure seu cardápio e comece a vender no mesmo dia." },
-    { icon: Star, title: "Avaliações dos clientes", desc: "Receba feedback e construa a reputação da sua loja online." },
+/* ---------- SOLUÇÃO ---------- */
+function Solution() {
+  return (
+    <section className="py-28">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="grid gap-16 lg:grid-cols-2 lg:items-center">
+          <div className="relative order-2 lg:order-1">
+            <div
+              className="absolute -inset-6 -z-10 rounded-[2rem] opacity-40 blur-3xl"
+              style={{ background: "var(--gradient-primary)" }}
+            />
+            <div className="overflow-hidden rounded-3xl border border-border bg-card shadow-[var(--shadow-elegant)]">
+              <img
+                src={phoneMenu}
+                alt="App próprio do restaurante feito com ChefBora"
+                loading="lazy"
+                className="h-full w-full object-cover"
+              />
+            </div>
+          </div>
+
+          <div className="order-1 lg:order-2">
+            <p className="text-sm font-semibold uppercase tracking-wider text-primary">
+              A solução
+            </p>
+            <h2 className="mt-3 font-[Plus_Jakarta_Sans,sans-serif] text-4xl font-extrabold tracking-tight sm:text-5xl">
+              ChefBora: o sistema próprio de delivery do seu restaurante
+            </h2>
+            <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
+              Tudo o que você precisa para vender direto: app próprio para seus
+              clientes, painel administrativo completo, automação de pedidos e
+              WhatsApp integrado. Sem intermediários e sem comissões.
+            </p>
+            <ul className="mt-8 space-y-4">
+              {[
+                "App próprio com sua marca, suas cores, sua cara",
+                "Pedidos automáticos pelo WhatsApp do seu negócio",
+                "Painel para gerenciar tudo em tempo real",
+                "Você é dono dos clientes — e dos dados",
+              ].map((item) => (
+                <li key={item} className="flex items-start gap-3">
+                  <span className="mt-1 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+                    <CheckCircle2 className="h-4 w-4" />
+                  </span>
+                  <span className="text-base font-medium">{item}</span>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-10">
+              <Button
+                size="lg"
+                className="h-12 bg-[image:var(--gradient-primary)] px-7 text-base font-semibold text-primary-foreground shadow-[var(--shadow-soft)] hover:opacity-95"
+              >
+                Quero meu app próprio
+                <ArrowRight className="ml-1 h-4 w-4" />
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------- BENEFÍCIOS ---------- */
+function Benefits() {
+  const benefits = [
+    {
+      icon: TrendingUp,
+      title: "Mais lucro por pedido",
+      desc: "Sem comissão por venda. O que entra, fica no seu caixa — não no de terceiros.",
+    },
+    {
+      icon: Shield,
+      title: "Controle total do negócio",
+      desc: "Você define preços, promoções, raio de entrega e horários. Sem ranqueamento, sem regra escondida.",
+    },
+    {
+      icon: Heart,
+      title: "Relacionamento direto",
+      desc: "Histórico, preferências e contato dos clientes ficam com você — para fidelizar e vender mais.",
+    },
+    {
+      icon: Bell,
+      title: "Automação de pedidos",
+      desc: "Pedidos chegam direto no painel e no WhatsApp. Cozinha e atendimento sempre sincronizados.",
+    },
   ];
 
   return (
-    <section id="funcionalidades" className="border-t border-border bg-secondary/30 py-24">
+    <section className="bg-secondary/30 py-28">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="mx-auto max-w-2xl text-center">
+          <p className="text-sm font-semibold uppercase tracking-wider text-primary">
+            Benefícios
+          </p>
+          <h2 className="mt-3 font-[Plus_Jakarta_Sans,sans-serif] text-4xl font-extrabold tracking-tight sm:text-5xl">
+            Por que migrar para o ChefBora
+          </h2>
+          <p className="mt-5 text-lg text-muted-foreground">
+            Mais que uma plataforma — uma forma de você voltar a comandar o seu
+            próprio delivery.
+          </p>
+        </div>
+
+        <div className="mt-16 grid gap-6 sm:grid-cols-2">
+          {benefits.map((b) => (
+            <div
+              key={b.title}
+              className="group rounded-2xl border border-border bg-card p-8 transition-all hover:-translate-y-1 hover:border-primary/30 hover:shadow-[var(--shadow-soft)]"
+            >
+              <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+                <b.icon className="h-6 w-6" />
+              </div>
+              <h3 className="mt-5 font-[Plus_Jakarta_Sans,sans-serif] text-xl font-bold">
+                {b.title}
+              </h3>
+              <p className="mt-2 text-base leading-relaxed text-muted-foreground">
+                {b.desc}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------- FUNCIONALIDADES ---------- */
+function Features() {
+  const items = [
+    {
+      icon: Smartphone,
+      title: "App para clientes",
+      desc: "Aplicativo próprio do seu restaurante, com cardápio, carrinho e checkout integrados.",
+    },
+    {
+      icon: LayoutDashboard,
+      title: "Painel administrativo",
+      desc: "Gestão de pedidos, produtos, estoque e relatórios em tempo real, em um dashboard simples.",
+    },
+    {
+      icon: MessageCircle,
+      title: "Integração WhatsApp",
+      desc: "Cada pedido chega no WhatsApp do estabelecimento — comunicação direta com o cliente.",
+    },
+    {
+      icon: Bell,
+      title: "Gestão de pedidos",
+      desc: "Status em tempo real: recebido, em preparo, saiu para entrega e finalizado.",
+    },
+    {
+      icon: Users,
+      title: "Multiatendimento",
+      desc: "Vários atendentes operando ao mesmo tempo, sem perder pedido nem misturar conversa.",
+    },
+    {
+      icon: TrendingUp,
+      title: "Relatórios de vendas",
+      desc: "Acompanhe ticket médio, horários de pico e melhores produtos para tomar decisões certas.",
+    },
+  ];
+
+  return (
+    <section className="py-28">
       <div className="mx-auto max-w-7xl px-6">
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-sm font-semibold uppercase tracking-wider text-primary">
             Funcionalidades
           </p>
-          <h2 className="mt-3 font-[Plus_Jakarta_Sans,sans-serif] text-3xl font-bold tracking-tight sm:text-4xl">
-            Feito para quem leva o delivery a sério
+          <h2 className="mt-3 font-[Plus_Jakarta_Sans,sans-serif] text-4xl font-extrabold tracking-tight sm:text-5xl">
+            Tudo o que seu delivery precisa, em uma plataforma só
           </h2>
         </div>
 
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {features.map((f) => (
-            <Card
+        <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {items.map((f) => (
+            <div
               key={f.title}
-              className="group border-border/80 bg-card p-6 transition-all hover:-translate-y-1 hover:border-primary/30 hover:shadow-[var(--shadow-soft)]"
+              className="group rounded-2xl border border-border bg-card p-7 transition-all hover:-translate-y-1 hover:border-primary/30 hover:shadow-[var(--shadow-soft)]"
             >
               <div className="inline-flex h-11 w-11 items-center justify-center rounded-lg bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
                 <f.icon className="h-5 w-5" />
               </div>
-              <h3 className="mt-4 font-[Plus_Jakarta_Sans,sans-serif] text-lg font-bold">
+              <h3 className="mt-5 font-[Plus_Jakarta_Sans,sans-serif] text-lg font-bold">
                 {f.title}
               </h3>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                 {f.desc}
-              </p>
-            </Card>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function HowItWorks() {
-  const steps = [
-    { n: "01", t: "Cadastre seu restaurante", d: "Crie sua conta e configure o cardápio em poucos minutos." },
-    { n: "02", t: "Compartilhe seu link", d: "Divulgue o link da sua loja nas redes sociais e WhatsApp." },
-    { n: "03", t: "Receba e entregue", d: "Gerencie pedidos pelo painel e despache pelo app do entregador." },
-  ];
-
-  return (
-    <section id="como-funciona" className="py-24">
-      <div className="mx-auto max-w-7xl px-6">
-        <div className="mx-auto max-w-2xl text-center">
-          <p className="text-sm font-semibold uppercase tracking-wider text-primary">
-            Como funciona
-          </p>
-          <h2 className="mt-3 font-[Plus_Jakarta_Sans,sans-serif] text-3xl font-bold tracking-tight sm:text-4xl">
-            Comece a vender em 3 passos
-          </h2>
-        </div>
-
-        <div className="mt-14 grid gap-8 md:grid-cols-3">
-          {steps.map((s) => (
-            <div
-              key={s.n}
-              className="relative rounded-2xl border border-border bg-card p-8 transition-shadow hover:shadow-[var(--shadow-soft)]"
-            >
-              <div
-                className="font-[Plus_Jakarta_Sans,sans-serif] text-5xl font-extrabold"
-                style={{
-                  background: "var(--gradient-primary)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                }}
-              >
-                {s.n}
-              </div>
-              <h3 className="mt-4 font-[Plus_Jakarta_Sans,sans-serif] text-xl font-bold">
-                {s.t}
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                {s.d}
               </p>
             </div>
           ))}
@@ -363,56 +407,44 @@ function HowItWorks() {
   );
 }
 
-function Testimonials() {
-  const items = [
-    {
-      quote:
-        "Saímos das taxas absurdas dos apps e dobramos a margem. O painel é simples e a equipe aprende em um dia.",
-      name: "Marina Costa",
-      role: "Proprietária — Cantina da Marina",
-    },
-    {
-      quote:
-        "O app do entregador organizou nossa operação. Hoje sei exatamente onde cada pedido está em tempo real.",
-      name: "Rafael Souza",
-      role: "Gerente — Burger House",
-    },
-    {
-      quote:
-        "Em duas semanas com o ChefBora já tínhamos cardápio online próprio e clientes pedindo direto pelo nosso link.",
-      name: "Juliana Lima",
-      role: "Sócia — Sabor & Arte",
-    },
-  ];
-
+/* ---------- PROVA / CONFIANÇA ---------- */
+function Trust() {
   return (
-    <section className="border-y border-border bg-secondary/30 py-24">
-      <div className="mx-auto max-w-7xl px-6">
-        <div className="mx-auto max-w-2xl text-center">
-          <p className="text-sm font-semibold uppercase tracking-wider text-primary">
-            Depoimentos
-          </p>
-          <h2 className="mt-3 font-[Plus_Jakarta_Sans,sans-serif] text-3xl font-bold tracking-tight sm:text-4xl">
-            Restaurantes que cresceram com o ChefBora
-          </h2>
+    <section className="border-y border-border bg-secondary/40 py-24">
+      <div className="mx-auto max-w-4xl px-6 text-center">
+        <div className="mx-auto inline-flex items-center gap-1">
+          {Array.from({ length: 5 }).map((_, i) => (
+            <Star key={i} className="h-5 w-5 fill-primary text-primary" />
+          ))}
         </div>
+        <h2 className="mt-6 font-[Plus_Jakarta_Sans,sans-serif] text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl lg:text-5xl">
+          Feito para quem quer crescer{" "}
+          <span className="bg-[image:var(--gradient-primary)] bg-clip-text text-transparent">
+            sem depender de apps de terceiros
+          </span>
+          .
+        </h2>
+        <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground">
+          O ChefBora é desenhado para restaurantes, lanchonetes e deliveries que
+          querem retomar o controle do próprio negócio — com tecnologia simples,
+          transparente e sem letras miúdas.
+        </p>
 
-        <div className="mt-14 grid gap-6 md:grid-cols-3">
-          {items.map((t) => (
-            <Card key={t.name} className="border-border/80 bg-card p-7">
-              <div className="flex gap-0.5">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star key={i} className="h-4 w-4 fill-primary text-primary" />
-                ))}
+        <div className="mx-auto mt-12 grid max-w-3xl grid-cols-2 gap-6 sm:grid-cols-4">
+          {[
+            { v: "0%", l: "comissão por venda" },
+            { v: "5min", l: "para configurar" },
+            { v: "24/7", l: "suporte humano" },
+            { v: "100%", l: "seus dados" },
+          ].map((s) => (
+            <div key={s.l}>
+              <div className="font-[Plus_Jakarta_Sans,sans-serif] text-3xl font-extrabold text-primary sm:text-4xl">
+                {s.v}
               </div>
-              <p className="mt-4 text-base leading-relaxed text-foreground">
-                "{t.quote}"
-              </p>
-              <div className="mt-6 border-t border-border pt-4">
-                <div className="font-semibold">{t.name}</div>
-                <div className="text-sm text-muted-foreground">{t.role}</div>
+              <div className="mt-1 text-xs text-muted-foreground sm:text-sm">
+                {s.l}
               </div>
-            </Card>
+            </div>
           ))}
         </div>
       </div>
@@ -420,123 +452,40 @@ function Testimonials() {
   );
 }
 
-function Pricing() {
-  const plans = [
-    {
-      name: "Starter",
-      price: "99",
-      desc: "Para quem está começando no delivery próprio.",
-      features: ["Cardápio digital", "Até 200 pedidos/mês", "Painel do lojista", "Suporte por chat"],
-    },
-    {
-      name: "Pro",
-      price: "199",
-      desc: "Para restaurantes em crescimento.",
-      features: ["Pedidos ilimitados", "App do entregador", "Relatórios avançados", "Cupons e promoções", "Suporte prioritário"],
-      highlight: true,
-    },
-    {
-      name: "Business",
-      price: "399",
-      desc: "Para redes e operações múltiplas.",
-      features: ["Tudo do Pro", "Múltiplas unidades", "Integrações via API", "Gerente de conta dedicado"],
-    },
-  ];
-
+/* ---------- CTA FINAL ---------- */
+function FinalCTA() {
   return (
-    <section id="planos" className="py-24">
-      <div className="mx-auto max-w-7xl px-6">
-        <div className="mx-auto max-w-2xl text-center">
-          <p className="text-sm font-semibold uppercase tracking-wider text-primary">
-            Planos
-          </p>
-          <h2 className="mt-3 font-[Plus_Jakarta_Sans,sans-serif] text-3xl font-bold tracking-tight sm:text-4xl">
-            Sem comissão. Sem surpresas.
-          </h2>
-          <p className="mt-4 text-muted-foreground">
-            Escolha o plano ideal para sua operação. Cancele quando quiser.
-          </p>
-        </div>
-
-        <div className="mt-14 grid gap-6 md:grid-cols-3">
-          {plans.map((p) => (
-            <Card
-              key={p.name}
-              className={`relative flex flex-col p-8 ${
-                p.highlight
-                  ? "border-primary bg-card shadow-[var(--shadow-elegant)] md:scale-105"
-                  : "border-border bg-card"
-              }`}
-            >
-              {p.highlight && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-[image:var(--gradient-primary)] px-3 py-1 text-xs font-semibold text-primary-foreground shadow-[var(--shadow-soft)]">
-                  Mais popular
-                </div>
-              )}
-              <h3 className="font-[Plus_Jakarta_Sans,sans-serif] text-xl font-bold">
-                {p.name}
-              </h3>
-              <p className="mt-1 text-sm text-muted-foreground">{p.desc}</p>
-              <div className="mt-6 flex items-baseline gap-1">
-                <span className="text-sm font-semibold text-muted-foreground">R$</span>
-                <span className="font-[Plus_Jakarta_Sans,sans-serif] text-5xl font-extrabold tracking-tight">
-                  {p.price}
-                </span>
-                <span className="text-sm text-muted-foreground">/mês</span>
-              </div>
-              <ul className="mt-6 space-y-3 text-sm">
-                {p.features.map((f) => (
-                  <li key={f} className="flex items-start gap-2.5">
-                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                    <span>{f}</span>
-                  </li>
-                ))}
-              </ul>
-              <Button
-                className={`mt-8 h-11 ${
-                  p.highlight
-                    ? "bg-[image:var(--gradient-primary)] text-primary-foreground shadow-[var(--shadow-soft)] hover:opacity-95"
-                    : ""
-                }`}
-                variant={p.highlight ? "default" : "outline"}
-              >
-                Começar agora
-              </Button>
-            </Card>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function CTA() {
-  return (
-    <section className="px-6 pb-24">
+    <section className="px-6 py-24">
       <div
-        className="relative mx-auto max-w-6xl overflow-hidden rounded-3xl px-8 py-16 text-center shadow-[var(--shadow-elegant)] sm:px-16"
+        className="relative mx-auto max-w-6xl overflow-hidden rounded-3xl px-8 py-20 text-center shadow-[var(--shadow-elegant)] sm:px-16"
         style={{ background: "var(--gradient-primary)" }}
       >
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,white_0%,transparent_60%)] opacity-10" />
         <div className="relative">
-          <h2 className="font-[Plus_Jakarta_Sans,sans-serif] text-3xl font-extrabold tracking-tight text-primary-foreground sm:text-5xl">
-            Pronto para vender mais no delivery?
+          <h2 className="font-[Plus_Jakarta_Sans,sans-serif] text-4xl font-extrabold tracking-tight text-primary-foreground sm:text-5xl lg:text-6xl">
+            Comece agora com o ChefBora
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-base text-primary-foreground/90 sm:text-lg">
-            Teste o ChefBora grátis por 14 dias. Sem cartão, sem fidelidade.
+          <p className="mx-auto mt-5 max-w-2xl text-lg text-primary-foreground/90 sm:text-xl">
+            Crie o app do seu delivery em minutos. 14 dias grátis, sem cartão e
+            sem fidelidade.
           </p>
-          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Button
               size="lg"
-              className="h-12 bg-background px-8 text-base font-semibold text-foreground hover:bg-background/95"
+              className="h-14 bg-background px-8 text-base font-bold text-foreground shadow-lg hover:bg-background/95"
             >
-              Começar teste grátis
-              <ArrowRight className="ml-1 h-4 w-4" />
+              Criar meu app grátis
+              <ArrowRight className="ml-1 h-5 w-5" />
             </Button>
+            <Link
+              to="/delete-account"
+              className="hidden"
+              aria-hidden
+            />
             <Button
               size="lg"
               variant="ghost"
-              className="h-12 px-8 text-base font-semibold text-primary-foreground hover:bg-white/10 hover:text-primary-foreground"
+              className="h-14 px-8 text-base font-semibold text-primary-foreground hover:bg-white/10 hover:text-primary-foreground"
             >
               Falar com vendas
             </Button>
@@ -546,4 +495,3 @@ function CTA() {
     </section>
   );
 }
-
