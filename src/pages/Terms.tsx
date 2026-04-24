@@ -1,28 +1,12 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { useEffect } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 
-export const Route = createFileRoute("/terms")({
-  head: () => ({
-    meta: [
-      { title: "Termos de Uso — ChefBora" },
-      {
-        name: "description",
-        content:
-          "Termos de Uso do ChefBora: regras, direitos e deveres para utilização da plataforma e seus serviços.",
-      },
-      { property: "og:title", content: "Termos de Uso — ChefBora" },
-      {
-        property: "og:description",
-        content:
-          "Conheça as condições de uso da plataforma ChefBora e dos estabelecimentos parceiros.",
-      },
-    ],
-  }),
-  component: TermsPage,
-});
+export default function Terms() {
+  useEffect(() => {
+    document.title = "Termos de Uso — ChefBora";
+  }, []);
 
-function TermsPage() {
   return (
     <div className="min-h-screen bg-background font-[Inter,system-ui,sans-serif] text-foreground antialiased">
       <SiteHeader />

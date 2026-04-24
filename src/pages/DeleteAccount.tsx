@@ -1,5 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { z } from "zod";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
@@ -11,25 +10,6 @@ import { Card } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { AlertTriangle, CheckCircle2 } from "lucide-react";
 
-export const Route = createFileRoute("/delete-account")({
-  head: () => ({
-    meta: [
-      { title: "Excluir minha conta — ChefBora" },
-      {
-        name: "description",
-        content:
-          "Solicite a exclusão definitiva da sua conta e dos seus dados no ChefBora.",
-      },
-      { property: "og:title", content: "Excluir minha conta — ChefBora" },
-      {
-        property: "og:description",
-        content: "Solicite a exclusão definitiva da sua conta no ChefBora.",
-      },
-    ],
-  }),
-  component: DeleteAccountPage,
-});
-
 const schema = z.object({
   name: z.string().trim().min(2, "Informe seu nome completo").max(100),
   email: z.string().trim().email("E-mail inválido").max(255),
@@ -40,10 +20,14 @@ const schema = z.object({
   }),
 });
 
-function DeleteAccountPage() {
+export default function DeleteAccount() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
   const [confirm, setConfirm] = useState(false);
+
+  useEffect(() => {
+    document.title = "Excluir minha conta — ChefBora";
+  }, []);
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();

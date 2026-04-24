@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
   ArrowRight,
@@ -20,35 +20,7 @@ import phoneMenu from "@/assets/phone-menu.jpg";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 
-export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "ChefBora — Seu próprio app de delivery, sem taxas abusivas" },
-      {
-        name: "description",
-        content:
-          "Crie o app de delivery do seu restaurante em minutos. Sem comissão por venda, com painel completo, integração WhatsApp e relacionamento direto com seus clientes.",
-      },
-      { property: "og:title", content: "ChefBora — Seu próprio app de delivery" },
-      {
-        property: "og:description",
-        content:
-          "Pare de pagar 30% para apps de terceiros. Tenha seu app, painel e WhatsApp integrados em uma plataforma só.",
-      },
-      { property: "og:type", content: "website" },
-    ],
-    links: [
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800;900&display=swap",
-      },
-    ],
-  }),
-  component: Index,
-});
-
-function Index() {
+export default function Index() {
   return (
     <div className="min-h-screen bg-background font-[Inter,system-ui,sans-serif] text-foreground antialiased">
       <SiteHeader />
@@ -477,11 +449,6 @@ function FinalCTA() {
               Criar meu app grátis
               <ArrowRight className="ml-1 h-5 w-5" />
             </Button>
-            <Link
-              to="/delete-account"
-              className="hidden"
-              aria-hidden
-            />
             <Button
               size="lg"
               variant="ghost"

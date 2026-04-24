@@ -1,28 +1,12 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { useEffect } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 
-export const Route = createFileRoute("/privacy")({
-  head: () => ({
-    meta: [
-      { title: "Política de Privacidade — ChefBora" },
-      {
-        name: "description",
-        content:
-          "Política de Privacidade do ChefBora: como coletamos, usamos, armazenamos e protegemos dados pessoais nos termos da LGPD.",
-      },
-      { property: "og:title", content: "Política de Privacidade — ChefBora" },
-      {
-        property: "og:description",
-        content:
-          "Saiba como o ChefBora trata dados pessoais em seus aplicativos, sites e serviços.",
-      },
-    ],
-  }),
-  component: PrivacyPage,
-});
+export default function Privacy() {
+  useEffect(() => {
+    document.title = "Política de Privacidade — ChefBora";
+  }, []);
 
-function PrivacyPage() {
   return (
     <div className="min-h-screen bg-background font-[Inter,system-ui,sans-serif] text-foreground antialiased">
       <SiteHeader />

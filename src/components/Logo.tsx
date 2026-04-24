@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import logo from "@/assets/chefbora-logo.png";
 
 export function Logo({ className = "h-9" }: { className?: string }) {

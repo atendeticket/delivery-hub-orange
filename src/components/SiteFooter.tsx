@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { Logo } from "./Logo";
 
 export function SiteFooter() {
@@ -29,10 +29,7 @@ export function SiteFooter() {
               { label: "Excluir conta", to: "/delete-account" },
             ]}
           />
-          <FooterCol
-            title="Suporte"
-            links={[{ label: "Contato", to: "/" }]}
-          />
+          <FooterCol title="Suporte" links={[{ label: "Contato", to: "/" }]} />
         </div>
         <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-border pt-6 text-sm text-muted-foreground sm:flex-row">
           <p>© {new Date().getFullYear()} ChefBora. Todos os direitos reservados.</p>
@@ -52,7 +49,9 @@ function FooterCol({
 }) {
   return (
     <div>
-      <h4 className="font-[Plus_Jakarta_Sans,sans-serif] text-sm font-bold">{title}</h4>
+      <h4 className="font-[Plus_Jakarta_Sans,sans-serif] text-sm font-bold">
+        {title}
+      </h4>
       <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
         {links.map((l) => (
           <li key={l.label}>
