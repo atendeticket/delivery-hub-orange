@@ -12,9 +12,7 @@ export default defineConfig({
   plugins: [
     tsConfigPaths(),
     tailwindcss(),
-    tanstackStart({
-      target: "node-server",
-    }),
+    tanstackStart(),
     viteReact(),
   ],
 });
